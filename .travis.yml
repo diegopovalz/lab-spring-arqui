@@ -1,19 +1,23 @@
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 services:
-  - mysql
+- mysql
 dist: trusty
 sudo: required
 addons:
   apt:
     packages:
-      - mysql-server-5.6
-      - mysql-client-core-5.6
-      - mysql-client-5.6
+    - mysql-server-5.6
+    - mysql-client-core-5.6
+    - mysql-client-5.6
 before_script:
-  - mysql -u root -e 'CREATE DATABASE labspring;'
-  - mysql -u root -e "CREATE USER 'sa'@'localhost' IDENTIFIED BY 'sa';"
-  - mysql -u root -e "GRANT ALL ON labspring.* TO 'sa'@'localhost';"
+- mysql -u root -e 'CREATE DATABASE labspring;'
+- mysql -u root -e "CREATE USER 'sa'@'localhost' IDENTIFIED BY 'sa';"
+- mysql -u root -e "GRANT ALL ON labspring.* TO 'sa'@'localhost';"
 before_install:
-  - chmod +x mvnw
+- chmod +x mvnw
+deploy:
+  provider: heroku
+  api_key:
+    secure: kZbOlzxQmK5kpj62kXshabDVRk/qq3RcqZLLe0m9NBF3z5r2S1i5qzOpSTSNymFCb9hS+bGuo3a5k0K6cDFGMnW7NHIS+B5dPlbCItKtqUYqIxA+U8Nk0qHBGADO5e/7ueUguj7E5+k8OHzBwsV7T2tFEGGZgSJk3U4qZi6+NifnzmRh5xOTUefOc8aeMhkkCPpYdx52A1rMpgGVvZYenyj1kNTbln1LRafAzSGIG5Jm6e8Qqp0zPIm4ucihLvRygacsLURXk+a8hPuIfJk4v9R7TZ+KjGUlkPt1j1xth7/LJaoVUHUr5B7AyPYerZ1Wd91UxmpcWcLZFYhAjLc+ZzuBFdLdfDg2WugPJmNBMMFWhXaqqFveL50V3H0huFjnx1Fpvvkrrs0vFlythFPxBXPJRisbjAy/oSuheEvcb8+KS8PLFVmV6ipr6G8bVCBGkiEU83kfsb0PSXe2lICzOoPQF1BCFTCwpoPM19JWJGeYuipCAVYiEAcERPOvpCItlLqziEwrjglHjrYFrjrKDY4xMTS1gHNgCGL+O4gyXy/YYvBj8sDJ/oXqJwDm4NTGuvCngwnpJXB2t3+VMNnlNfH6bZRSkzwuzx2sWILzi8VfR6vgx36QIZCqYJT65lSk5WlKrSJZ/1IpkNcGFkTZvEdYoRt2rv1LRXVgLJC6fsU=
